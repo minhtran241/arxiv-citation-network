@@ -6,7 +6,7 @@ This project involved the analysis of the ArXiv citation network.
 
 ## Usage
 
-The complete code of this project is in this repository, in the file: [arxiv-citation-network.ipynb](https://github.com/dennishnf/project-arxiv-citation-network/blob/main/arxiv-citation-network.ipynb).
+The complete code of this project is in this repository, in the file: [arxiv-citation-network.ipynb](https://github.com/minhtran241/arxiv-citation-network/blob/main/arxiv-citation-network.ipynb).
 
 If the notebook does not load or takes a long time to load, please refresh the page.
 
