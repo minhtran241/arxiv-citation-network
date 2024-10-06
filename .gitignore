@@ -10,6 +10,7 @@ node_modules/
 
 # Data
 data/
+output/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -138,3 +139,6 @@ ui-tests/playwright-report
 .pnp.*
 ui-tests/.yarn/*
 ui-tests/.pnp.*
+
+# Environment variables
+.env
