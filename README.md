@@ -6,9 +6,28 @@ This project involved the analysis of the ArXiv citation network.
 
 ## Usage
 
-The complete code of this project is in this repository, in the file: [arxiv-citation-network.ipynb](https://github.com/minhtran241/arxiv-citation-network/blob/main/arxiv-citation-network.ipynb).
+### Data Preparation
 
-If the notebook does not load or takes a long time to load, please refresh the page.
+To prepare the data, run the following command:
+
+```bash
+python3 prepare_data.py
+```
+
+This will generate csv files for the nodes and edges of the citation network.
+
+### Neo4j Database
+
+To load the data into a Neo4j database, run the following command:
+
+```bash
+python3 load_neo4j.py
+```
+
+This will load the data from the csv files into a Neo4j database.
+
+> [!NOTE]
+> If it takes too long to load the data, you can change the number of random samples in the `prepare_data.py` file (`N_SAMPLES` variable).
 
 ## Data
 
