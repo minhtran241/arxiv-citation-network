@@ -8,6 +8,7 @@ load_dotenv()
 
 URI = os.getenv("NEO4J_URI")
 AUTH = (os.getenv("NEO4J_USER"), os.getenv("NEO4J_PASSWORD"))
+DATABASE = os.environ.get("NEO4J_DATABASE", "neo4j")
 MAX_CONNECTION_POOL_SIZE = 5
 
 CSV_DIR = "output"
@@ -19,57 +20,47 @@ PAPER_CATEGORIES_FILE = f"{CSV_DIR}/paper_categories.csv"
 CITATIONS_FILE = f"{CSV_DIR}/citations_network.csv"
 
 
-def create_neo4j_driver(uri, auth, max_pool_size, encrypted=False):
-    """Creates a Neo4j driver instance."""
-    return GraphDatabase.driver(
-        uri, auth=auth, max_connection_pool_size=max_pool_size, encrypted=encrypted
-    )
-
-
-def create_neo4j_session(driver, database="neo4j"):
-    """Creates a session for Neo4j transactions."""
-    return driver.session(database=database)
-
-
-def create_nodes_from_csv(session, file_path, node_label, field_mapping):
+def create_nodes(session, csv_path, label, field_map):
     """Creates nodes from CSV file."""
-    with open(file_path, "r") as f:
+    with open(csv_path, "r") as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
-            fields = {field: row[idx] for field, idx in field_mapping.items()}
-            query = f"CREATE (n:{node_label} {{"
+            fields = {field: row[idx] for field, idx in field_map.items()}
+            query = f"CREATE (n:{label} {{"
             query += ", ".join([f"{field}: ${field}" for field in fields.keys()])
             query += "})"
             session.run(query, **fields)
 
 
-def create_relationships_from_csv(
+def create_rels_from_csv(
     session,
-    file_path,
-    relationship_type,
-    start_label,
-    end_label,
-    start_id_field,
-    end_id_field,
+    csv_path,
+    rel_type,
+    start_lbl,
+    end_lbl,
+    start_field,
+    end_field,
 ):
     """Creates relationships between nodes from CSV."""
-    with open(file_path, "r") as f:
+    with open(csv_path, "r") as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
             query = (
-                f"MATCH (a:{start_label} {{{start_id_field}: $start_id}}) "
-                f"MATCH (b:{end_label} {{{end_id_field}: $end_id}}) "
-                f"CREATE (a)-[:{relationship_type}]->(b)"
+                f"MATCH (a:{start_lbl} {{{start_field}: $start_value}}) "
+                f"MATCH (b:{end_lbl} {{{end_field}: $end_value}}) "
+                f"CREATE (a)-[:{rel_type}]->(b)"
             )
-            session.run(query, start_id=row[0], end_id=row[1])
+            session.run(query, start_value=row[0], end_value=row[1])
 
 
 def main():
     # Create a Neo4j driver and session
-    driver = create_neo4j_driver(URI, AUTH, MAX_CONNECTION_POOL_SIZE)
-    session = create_neo4j_session(driver)
+    driver = GraphDatabase.driver(
+        URI, auth=AUTH, max_connection_pool_size=MAX_CONNECTION_POOL_SIZE
+    )
+    session = driver.session(database=DATABASE)
 
     # Define field mappings for nodes
     paper_field_mapping = {"idAxv": 0, "title": 1}
@@ -77,15 +68,15 @@ def main():
     category_field_mapping = {"category": 0}
 
     # Create nodes for authors, categories, and papers
-    create_nodes_from_csv(session, AUTHORS_FILE, "Author", author_field_mapping)
-    create_nodes_from_csv(session, CATEGORIES_FILE, "Category", category_field_mapping)
-    create_nodes_from_csv(session, PAPER_FILE, "Paper", paper_field_mapping)
+    create_nodes(session, AUTHORS_FILE, "Author", author_field_mapping)
+    create_nodes(session, CATEGORIES_FILE, "Category", category_field_mapping)
+    create_nodes(session, PAPER_FILE, "Paper", paper_field_mapping)
 
     # Create relationships between papers, authors, and categories
-    create_relationships_from_csv(
+    create_rels_from_csv(
         session, PAPER_AUTHORS_FILE, "AUTHORED", "Paper", "Author", "idAxv", "author"
     )
-    create_relationships_from_csv(
+    create_rels_from_csv(
         session,
         PAPER_CATEGORIES_FILE,
         "CATEGORIZED",
@@ -94,7 +85,7 @@ def main():
         "idAxv",
         "category",
     )
-    create_relationships_from_csv(
+    create_rels_from_csv(
         session,
         CITATIONS_FILE,
         "CITES",
