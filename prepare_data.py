@@ -1,13 +1,9 @@
 import os
 import json
-import random
 import pandas as pd
 
-# Set random seed for reproducibility
-random.seed(42)
 
 # Constants
-N_SAMPLES = 200
 CITATION_JSON = "data/internal-references-pdftotext.json"
 METADATA_JSON = "data/oai-arxiv-metadata-hash-abstracts-2019-03-01.json"
 OUTPUT_DIR = "output"
@@ -26,17 +22,11 @@ def load_json(file_path):
         return json.load(file)
 
 
-def load_metadata(file_path, n_samples):
+def load_metadata(file_path):
     """Loads metadata JSON lines and converts to a list."""
     with open(file_path, "r") as file:
         metadata = [json.loads(line) for line in file]
-    return metadata[:n_samples]
-
-
-def sample_dict_data(data, n_samples):
-    """Samples a given number of entries from the dictionary."""
-    sampled_keys = random.sample(list(data.keys()), n_samples)
-    return {k: data[k] for k in sampled_keys if data[k]}
+    return metadata[:4000]
 
 
 def save_dataframe(df: pd.DataFrame, file_path: str, message: str):
@@ -50,7 +40,7 @@ def create_citation_df(citation_data):
     citations = [(key, ref) for key in citation_data for ref in citation_data[key]]
     df = pd.DataFrame(
         citations, columns=["main_paper", "referenced_paper"]
-    ).drop_duplicates()
+    ).drop_duplicates(keep=False, inplace=False)
     intersecting_papers = set(df["main_paper"]).intersection(df["referenced_paper"])
     return df[df["main_paper"].isin(intersecting_papers)]
 
@@ -60,8 +50,9 @@ def create_metadata_df(metadata):
     metadata_df = pd.DataFrame(metadata)[
         ["id", "title", "report-no", "doi", "submitter", "abstract_md5", "authors"]
     ]
+    metadata_df = metadata_df.drop_duplicates()
     metadata_df.rename(columns={"id": "idAxv"}, inplace=True)
-    metadata_df["idAxv"] = metadata_df["idAxv"].apply(lambda x: f"x{x}")
+    # metadata_df["idAxv"] = metadata_df["idAxv"].apply(lambda x: f"x{x}")
     metadata_df["title"] = metadata_df["title"].str.replace("\n", "")
     return metadata_df
 
@@ -88,6 +79,8 @@ def extract_field_entries(info, field, separator=", ", clean=True, is_list=False
             ]
             # some have the pattern "Haibin Zhao (1) and Haibin Zhao (2)" so we need to remove the number
             items = [item.split(" (")[0] for item in items]
+            # some have the pattern "(1) Haibin Zhao" so we need to remove the number
+            items = [item.split(") ")[-1] for item in items]
         entries.extend(items)
         paper_entries.extend([(entry["id"], item) for item in items])
     return entries, paper_entries
@@ -129,16 +122,37 @@ def main():
 
     # Process and save citations
     citation_data = load_json(CITATION_JSON)
-    sampled_data = sample_dict_data(citation_data, N_SAMPLES)
-    citations_df = create_citation_df(sampled_data)
-    save_dataframe(citations_df, CITATIONS_FILE, "Citations")
+    citations_df = create_citation_df(citation_data)
+    # save_dataframe(citations_df, CITATIONS_FILE, "Citations")
 
     # Process and save metadata
-    metadata = load_metadata(METADATA_JSON, N_SAMPLES)
+    metadata = load_metadata(METADATA_JSON)
+    # process_metadata(metadata, METADATA_FILE)
+
+    # Only save citations for papers that are in the metadata
+    citations_df = citations_df[
+        citations_df["main_paper"].isin([entry["id"] for entry in metadata])
+    ]
+    citations_df = citations_df[
+        citations_df["referenced_paper"].isin([entry["id"] for entry in metadata])
+    ]
+
+    # Get about 300 papers with citations to each other
+    metadata = [
+        entry
+        for entry in metadata
+        if entry["id"] in set(citations_df["main_paper"])
+        or entry["id"] in set(citations_df["referenced_paper"])
+    ]
+
     process_metadata(metadata, METADATA_FILE)
+
+    # Save the citations with only the papers that are in the metadata
+    save_dataframe(citations_df, CITATIONS_FILE, "Citations")
 
     # Extract and save authors
     authors, paper_authors = extract_field_entries(metadata, "authors")
+
     save_extracted_data(authors, ["author"], AUTHORS_FILE, "Authors")
     save_paper_data(
         paper_authors, ["idAxv", "author"], PAPER_AUTHORS_FILE, "Paper Authors"
