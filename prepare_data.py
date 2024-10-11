@@ -1,7 +1,7 @@
 import os
 import json
 import pandas as pd
-
+from tqdm import tqdm
 
 # Constants
 CITATION_JSON = "data/internal-references-pdftotext.json"
@@ -14,6 +14,8 @@ PAPER_AUTHORS_FILE = f"{OUTPUT_DIR}/paper_authors.csv"
 CATEGORIES_FILE = f"{OUTPUT_DIR}/categories.csv"
 PAPER_CATEGORIES_FILE = f"{OUTPUT_DIR}/paper_categories.csv"
 
+N_SAMPLES = 4000
+
 
 # Utility functions
 def load_json(file_path):
@@ -23,10 +25,14 @@ def load_json(file_path):
 
 
 def load_metadata(file_path):
-    """Loads metadata JSON lines and converts to a list."""
+    """Loads metadata JSON lines and converts to a list with progress tracking."""
+    metadata = []
     with open(file_path, "r") as file:
-        metadata = [json.loads(line) for line in file]
-    return metadata[:4000]
+        for line in tqdm(file, desc="Loading Metadata", total=N_SAMPLES):
+            metadata.append(json.loads(line))
+            if len(metadata) >= N_SAMPLES:
+                break
+    return metadata
 
 
 def save_dataframe(df: pd.DataFrame, file_path: str, message: str):
@@ -52,7 +58,6 @@ def create_metadata_df(metadata):
     ]
     metadata_df = metadata_df.drop_duplicates()
     metadata_df.rename(columns={"id": "idAxv"}, inplace=True)
-    # metadata_df["idAxv"] = metadata_df["idAxv"].apply(lambda x: f"x{x}")
     metadata_df["title"] = metadata_df["title"].str.replace("\n", "")
     return metadata_df
 
@@ -60,9 +65,8 @@ def create_metadata_df(metadata):
 def extract_field_entries(info, field, separator=", ", clean=True, is_list=False):
     """Extracts entries for a given field (authors or categories)."""
     entries, paper_entries = [], []
-    for entry in info:
+    for entry in tqdm(info, desc=f"Extracting {field.title()}"):
         items = entry[field][0] if is_list else entry[field]
-        # print(items)
         items = (
             items.replace(" and ", separator)
             .replace(", and ", separator)
@@ -77,9 +81,7 @@ def extract_field_entries(info, field, separator=", ", clean=True, is_list=False
                 .replace("'", "")
                 for item in items
             ]
-            # some have the pattern "Haibin Zhao (1) and Haibin Zhao (2)" so we need to remove the number
             items = [item.split(" (")[0] for item in items]
-            # some have the pattern "(1) Haibin Zhao" so we need to remove the number
             items = [item.split(") ")[-1] for item in items]
         entries.extend(items)
         paper_entries.extend([(entry["id"], item) for item in items])
@@ -123,11 +125,9 @@ def main():
     # Process and save citations
     citation_data = load_json(CITATION_JSON)
     citations_df = create_citation_df(citation_data)
-    # save_dataframe(citations_df, CITATIONS_FILE, "Citations")
 
     # Process and save metadata
     metadata = load_metadata(METADATA_JSON)
-    # process_metadata(metadata, METADATA_FILE)
 
     # Only save citations for papers that are in the metadata
     citations_df = citations_df[
@@ -152,7 +152,6 @@ def main():
 
     # Extract and save authors
     authors, paper_authors = extract_field_entries(metadata, "authors")
-
     save_extracted_data(authors, ["author"], AUTHORS_FILE, "Authors")
     save_paper_data(
         paper_authors, ["idAxv", "author"], PAPER_AUTHORS_FILE, "Paper Authors"
