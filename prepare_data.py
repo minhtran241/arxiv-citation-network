@@ -7,7 +7,7 @@ import pandas as pd
 random.seed(42)
 
 # Constants
-N_SAMPLES = 20000
+N_SAMPLES = 200
 CITATION_JSON = "data/internal-references-pdftotext.json"
 METADATA_JSON = "data/oai-arxiv-metadata-hash-abstracts-2019-03-01.json"
 OUTPUT_DIR = "output"
@@ -26,10 +26,11 @@ def load_json(file_path):
         return json.load(file)
 
 
-def load_metadata(file_path):
+def load_metadata(file_path, n_samples):
     """Loads metadata JSON lines and converts to a list."""
     with open(file_path, "r") as file:
-        return [json.loads(line) for line in file]
+        metadata = [json.loads(line) for line in file]
+    return metadata[:n_samples]
 
 
 def sample_dict_data(data, n_samples):
@@ -57,7 +58,7 @@ def create_citation_df(citation_data):
 def create_metadata_df(metadata):
     """Creates a metadata DataFrame and applies transformations."""
     metadata_df = pd.DataFrame(metadata)[
-        ["id", "title", "report-no", "doi", "submitter", "abstract_md5"]
+        ["id", "title", "report-no", "doi", "submitter", "abstract_md5", "authors"]
     ]
     metadata_df.rename(columns={"id": "idAxv"}, inplace=True)
     metadata_df["idAxv"] = metadata_df["idAxv"].apply(lambda x: f"x{x}")
@@ -70,12 +71,23 @@ def extract_field_entries(info, field, separator=", ", clean=True, is_list=False
     entries, paper_entries = [], []
     for entry in info:
         items = entry[field][0] if is_list else entry[field]
-        items = items.replace(" and ", separator).split(separator)
+        # print(items)
+        items = (
+            items.replace(" and ", separator)
+            .replace(", and ", separator)
+            .split(separator)
+        )
         if clean:
             items = [
-                item.strip().replace(",", "").replace('"', "").replace("\n", "")
+                item.strip('"')
+                .replace(",", "")
+                .replace('"', "")
+                .replace("\n", "")
+                .replace("'", "")
                 for item in items
             ]
+            # some have the pattern "Haibin Zhao (1) and Haibin Zhao (2)" so we need to remove the number
+            items = [item.split(" (")[0] for item in items]
         entries.extend(items)
         paper_entries.extend([(entry["id"], item) for item in items])
     return entries, paper_entries
@@ -101,8 +113,19 @@ def process_metadata(metadata, output_file):
 
 # Main workflow
 def main():
-    # Create output directory if it doesn't exist
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    # Ask the user if they want to remove the existing files or not if they exist already
+    if os.path.exists(OUTPUT_DIR):
+        remove = input(
+            "Output directory already exists. Do you want to remove it? (y/n): "
+        )
+        if remove.lower() == "y":
+            os.system(f"rm -rf {OUTPUT_DIR}")
+        else:
+            print("Exiting...")
+            return
+
+    # Create the output directory
+    os.makedirs(OUTPUT_DIR)
 
     # Process and save citations
     citation_data = load_json(CITATION_JSON)
@@ -111,11 +134,11 @@ def main():
     save_dataframe(citations_df, CITATIONS_FILE, "Citations")
 
     # Process and save metadata
-    metadata = load_metadata(METADATA_JSON)
+    metadata = load_metadata(METADATA_JSON, N_SAMPLES)
     process_metadata(metadata, METADATA_FILE)
 
     # Extract and save authors
-    authors, paper_authors = extract_field_entries(metadata, "authors", is_list=True)
+    authors, paper_authors = extract_field_entries(metadata, "authors")
     save_extracted_data(authors, ["author"], AUTHORS_FILE, "Authors")
     save_paper_data(
         paper_authors, ["idAxv", "author"], PAPER_AUTHORS_FILE, "Paper Authors"
