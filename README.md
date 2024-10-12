@@ -11,7 +11,7 @@ This project involved the analysis of the ArXiv citation network.
 To prepare the data, run the following command:
 
 ```bash
-python3 prepare_data.py
+python3 cite_parser.py
 ```
 
 This will generate csv files for the nodes and edges of the citation network.
@@ -21,13 +21,13 @@ This will generate csv files for the nodes and edges of the citation network.
 To load the data into a Neo4j database, run the following command:
 
 ```bash
-python3 load_neo4j.py
+python3 neo4j_data_importer.py
 ```
 
 This will load the data from the csv files into a Neo4j database.
 
 > [!NOTE]
-> If it takes too long to load the data, you can change the number of random samples in the `prepare_data.py` file (`N_SAMPLES` variable).
+> If it takes too long to load the data, you can change the number of random samples in the `cite_parser.py` file (`N_SAMPLES` variable).
 
 ## Data
 
