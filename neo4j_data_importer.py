@@ -7,8 +7,8 @@ from tqdm import tqdm
 load_dotenv()
 
 # Constants
-URI = os.getenv("NEO4J_URI")
-AUTH = (os.getenv("NEO4J_USER"), os.getenv("NEO4J_PASSWORD"))
+URI = os.getenv("NEO4J_URI", "bolt://18.206.46.71:7687")
+AUTH = (os.getenv("NEO4J_USER", "neo4j"), os.getenv("NEO4J_PASSWORD", "actions-installation-birth"))
 DATABASE = os.getenv("NEO4J_DATABASE", "neo4j")
 MAX_CONNECTION_POOL_SIZE = 5
 
