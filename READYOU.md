@@ -37,7 +37,7 @@ Composites:
 - This shows that each paper in the dataset is cited approximately 0.783 times by other papers. This suggests that not all papers are cited frequently, and some papers are not be cited at all.
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20135755.png)
 - The number of paper for each category:
-![Graph Screenshot](pictures/Screenshot%202024-10-22%140851.png)
+![Graph Screenshot](pictures/Screenshot%202024-10-22%20140851.png)
 ╒════════════════════╤═══════════════╕
 │category_name       │number_of_paper│
 ╞════════════════════╪═══════════════╡
@@ -114,7 +114,7 @@ Composites:
 │"cs.DM"             │1              │
 └────────────────────┴───────────────┘
 -The number of being cited for each paper:
-![Graph Screenshot](pictures/Screenshot%202024-10-22%142658.png)
+![Graph Screenshot](pictures/Screenshot%202024-10-22%20142658.png)
 ╒══════════════════════════════════════════════════════════════════════╤═══════════════╕
 │tittle                                                                │number_of_cited│
 ╞══════════════════════════════════════════════════════════════════════╪═══════════════╡
@@ -539,7 +539,7 @@ Composites:
 │"Non-Abelian Chern-Simons Vortices"                                   │1              │
 └──────────────────────────────────────────────────────────────────────┴───────────────┘
 - The author with more than 1 paper:
-![Graph Screenshot](pictures/Screenshot%202024-10-22%143433.png)
+![Graph Screenshot](pictures/Screenshot%202024-10-22%20143433.png)
 ╒═════════════════════════════════════════════╤════════════════╕
 │author_name                                  │number_of_papers│
 ╞═════════════════════════════════════════════╪════════════════╡
@@ -580,7 +580,7 @@ Density:
 //Node pair metrics
 ### 3.2 Node pair metrics
 - The most cocitation:
-![Graph Screenshot](pictures/Screenshot%202024-10-22%192236.png)
+![Graph Screenshot](pictures/Screenshot%202024-10-22%20192236.png)
 - We picked the top 4 cocitation pairs to show the most cocitation pairs since the table is too long to show all of them.
 ╒══════════════════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════════════════╤═══════════════╕
 │Paper1                                                                │Paper2                                                                │CoCitationCount│
@@ -598,7 +598,7 @@ Density:
 └──────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────┴───────────────┘
 - The table is make sense since the most cocitation pairs are the pairs that are related to each other. For example, the first pair is about the mixing of D mesons and the second pair is about the marginal solutions for the superstring.
 - The most bibliographic coupling:
-![Graph Screenshot](pictures/Screenshot%202024-10-22%193439.png)
+![Graph Screenshot](pictures/Screenshot%202024-10-22%20193439.png)
 ╒══════════════════════════════════════════════════════════╤══════════════════════════════════════════════════════════╤══════════════════════════╕
 │Paper1                                                    │Paper2                                                    │BibliographicCouplingCount│
 ╞══════════════════════════════════════════════════════════╪══════════════════════════════════════════════════════════╪══════════════════════════╡
@@ -617,21 +617,21 @@ Density:
 
 ### 3.3 Nodes metrics
 1. The paper that has the highest degree (using neuler):
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%195153.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20195153.png)
     - The result show that a paper with title "Moriond QCD 2007 - Theory Summary" has the most informaiton about other papers with 5 citations.
 2. The paper that has the highest betweenness centrality (using neuler):
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%195813.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20195813.png)
     - The result show that a paper with title "Moriond QCD 2007 - Theory Summary" has the highest betweenness centrality with the score of 24. This means that this paper is the most important paper in the network since it has the most shortest paths between other papers.
 3. The paper that has the highest closeness centrality (using neuler):
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%200533.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20200533.png)
     - The result show that all papers have the same closeness score of 1. This means that each paper cites or is cited by all other papers in the network. This is common in citation networks since all papers are connected to each other through citations.
 4. The paper that has the highest eigenvector centrality (using neuler):
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%201226.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20201226.png)
     - The result show that the papers with the following tittles "Marginal Solutions for the Superstring", "Analytic solutions for marginal deformations in open superstring field theory", "Direct extraction of one-loop integral coefficients", "Numerical Evaluation of Six-Photon Amplitudes" have the highest eigenvector centrality with the score of 0.45. This means that these papers are the most influence and prestige papers in the network since they are cited by other important papers.
 5. Papers with highest custering coefficient (using neuler):
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%203136.png)
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%203245.png)
-    ![Graph Screenshot](pictures/Screenshot%202024-10-22%203319.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20203136.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20203245.png)
+    ![Graph Screenshot](pictures/Screenshot%202024-10-22%20203319.png)
     - The result show that there are 30 papers with the highest clustering coefficient of 1. This means that these papers are in the same cluster and they are connected to each other through citations. This is common in citation networks since papers in the same categories are usually cited by each other.
 
 ## 4. Limitaion:
