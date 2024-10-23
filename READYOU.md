@@ -285,8 +285,7 @@ Density:
 | "Strong Phase and $D^0-D^0bar$ mixing at BES-III"                     | "D-\bar D mixing and rare D decays in the Littlest Higgs model with  non-unitarity matrix" | 2               |
 | "Marginal Solutions for the Superstring"                              | "Analytic solutions for marginal deformations in open superstring field theory" | 2               |
 | "Numerical Evaluation of Six-Photon Amplitudes"                       | "Direct extraction of one-loop integral coefficients"                 | 2               |
-| "Improved Measurement of the Positive Muon Lifetime and Determination | "Measurement of the Rate of Muon Capture in Hydrogen Gas and  Determination of the Proton's Pseudoscalar Coupling $g_P$" | 2               |
-| of  the Fermi Constant"                                               |                                                                      |                 |
+| "Improved Measurement of the Positive Muon Lifetime and Determination of  the Fermi Constant" | "Measurement of the Rate of Muon Capture in Hydrogen Gas and  Determination of the Proton's Pseudoscalar Coupling $g_P$" | 2               |
 
 - The table is make sense since the most cocitation pairs are the pairs that are related to each other. For example, the first pair is about the mixing of D mesons and the second pair is about the marginal solutions for the superstring.
 - The most bibliographic coupling:
