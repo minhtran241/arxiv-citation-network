@@ -1,11 +1,11 @@
 # Project ArXiv Citation Network
 
 ## Students
-- [Name1](Leo Ho)
-- [Name2](Minh Tran)
+- Leo Ho
+- Minh Tran
 
 ## School
-- [School Name](Grand Valley State University)
+- Grand Valley State University
 
 ## 1. Introduction
 This project is to analyze the citation network of ArXiv papers. We will use the data from two specific file "data\oai-arxiv-metadata-hash-abstracts-2019-03-01.json" and "data\internal-references-pdftotext.json" to get the citation information of the papers using pythong code to clean data and create neo4j network. We will then use the data to analyze the citation network of ArXiv papers.
@@ -33,6 +33,7 @@ Composites:
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20135755.png)
 - The number of paper for each category:
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20140851.png)
+
 | Category Name       | Number of Papers |
 |---------------------|------------------|
 | hep-ph              | 95               |
@@ -71,6 +72,7 @@ Composites:
 | q-fin.ST            | 2                |
 | math.GN             | 1                |
 | cs.DM               | 1                |
+
 -The number of being cited for each paper:
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20142658.png)
 | Title                                                                | Number of Cited |
@@ -248,6 +250,7 @@ Composites:
 | Non-Abelian Chern-Simons Vortices                                    | 1               |
 - The author with more than 1 paper:
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20143433.png)
+
 | Author Name                                  | Number of Papers |
 |----------------------------------------------|------------------|
 | Robert P. C. de Marrais                      | 2                |
@@ -264,6 +267,7 @@ Composites:
 | Kimiko Yamada                                | 2                |
 | Guowu Meng                                   | 2                |
 | Serhiy E. Samokhvalov                        | 2                |
+
 Maximums:
 - The table shows that the most popular category is "hep-ph" with 95 papers, followed by "hep-th" with 80 papers. The least popular categories are "math.GN" and "cs.DM" with only 1 paper each.
 - The most important paper is ""Stringy Instantons at Orbifold Singularities" with being cited 3 times.
@@ -275,6 +279,7 @@ Density:
 - The most cocitation:
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20192236.png)
 - We picked the top 4 cocitation pairs to show the most cocitation pairs since the table is too long to show all of them.
+
 | Paper1                                                                | Paper2                                                                | CoCitationCount |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|-----------------|
 | "Strong Phase and $D^0-D^0bar$ mixing at BES-III"                     | "D-\bar D mixing and rare D decays in the Littlest Higgs model with  non-unitarity matrix" | 2               |
@@ -282,18 +287,18 @@ Density:
 | "Numerical Evaluation of Six-Photon Amplitudes"                       | "Direct extraction of one-loop integral coefficients"                 | 2               |
 | "Improved Measurement of the Positive Muon Lifetime and Determination | "Measurement of the Rate of Muon Capture in Hydrogen Gas and  Determination of the Proton's Pseudoscalar Coupling $g_P$" | 2               |
 | of  the Fermi Constant"                                               |                                                                      |                 |
+
 - The table is make sense since the most cocitation pairs are the pairs that are related to each other. For example, the first pair is about the mixing of D mesons and the second pair is about the marginal solutions for the superstring.
 - The most bibliographic coupling:
+
 ![Graph Screenshot](pictures/Screenshot%202024-10-22%20193439.png)
 | Paper1                                                    | Paper2                                                     | BibliographicCouplingCount |
 |-----------------------------------------------------------|----------------------------------------------------------- |----------------------------|
-| "Implication of the D^0 Width Difference On CP-Violation i| "D0-anti-D0 Mixing and CP Violation in D0 vs anti-D0 to K* | 2                          |
-| n D^0-\bar D^0  Mixing"                                   | (+-) K(-+)  Decays"                                        |                            |
-| "Marginal deformations in string field theory"            | "Real analytic solutions for marginal deformations in open | 2                          |
-|                                                           | superstring  field theory"                                 |                            |
-| "On-Shell Methods in Perturbative QCD"                    | "One-loop phi-MHV amplitudes using the unitarity bootstrap | 2                          |
-|                                                           | "                                                          |                            |
+| "Implication of the D^0 Width Difference On CP-Violation i n D^0-\bar D^0  Mixing" | "D0-anti-D0 Mixing and CP Violation in D0 vs anti-D0 to K* (+-) K(-+)  Decays" | 2                          |
+| "Marginal deformations in string field theory"            | "Real analytic solutions for marginal deformations in open superstring  field theory"| 2                          |
+| "On-Shell Methods in Perturbative QCD"                    | "One-loop phi-MHV amplitudes using the unitarity bootstrap"| 2                          |
 | "Muon Physics: A Pillar of the Standard Model"            | "Electroweak Radiative Corrections to Muon Capture"        | 2                          |
+
 - From the cocitation and bibliographic coupling tables, we can see that the most cocitation and bibliographic coupling pairs are related to each other. On the one hand, the number of cocitation and bibliographic coupling pairs is very low compared to the number of papers. This is because not all papers are cited by all other papers and vice versa which is common in citation networks.
 
 ### 3.3 Nodes metrics
