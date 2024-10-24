@@ -31,7 +31,7 @@ This project aims to analyze the citation network of ArXiv papers. We use Python
 
 ## 2. Data Description
 
-The data was extracted from: [https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0](https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0). More exactly, we'll use the file "internal-references-v0.2.0-2019-03-01.json.gz", which contains the list of papers and their references, all papers using their arXiv IDs.
+The data was extracted from: [https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0](https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0). More exactly, we'll use the file `internal-references-v0.2.0-2019-03-01.json.gz`, which contains the list of papers and their references, all papers using their arXiv IDs and `oai-arxiv-metadata-hash-abstracts-2019-03-01.json`, which contains the metadata of the papers.
 
 The processed dataset is stored in JSON format. It contains metadata for ArXiv papers, including titles, authors, abstracts, and references. The data is stored in two files:
 
