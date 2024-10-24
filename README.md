@@ -331,11 +331,13 @@ The network consists of **313 nodes** and **667 relationships**.
 
 Maximums:
 
--   The table shows that the most popular category is "hep-ph" with 95 papers, followed by "hep-th" with 80 papers. The least popular categories are "math.GN" and "cs.DM" with only 1 paper each.
--   The most important paper is ""Stringy Instantons at Orbifold Singularities" with being cited 3 times.
--   The max papers by an author is 2, and there are 14 authors with 2 papers.
-    Density:
--   The density of the network is 217(number of `CITES` links) / 38226(total number of `PAPER` nodes pairs) = 0.005 which is very low. This means that the network is very sparse. That is make sense in citatioin networks because not all papers are cited by all other papers and vice versa.
+-   The table reveals that the most popular category is _hep-ph_ (High Energy Physics - Phenomenology) with 95 papers, followed by _hep-th_ (High Energy Physics - Theory) with 80 papers. The least popular categories are _math.GN_ (General Topology) and _cs.DM_ (Discrete Mathematics), each with only 1 paper.
+-   The most frequently cited paper is titled "Stringy Instantons at Orbifold Singularities," which has been cited 3 times.
+-   The maximum number of papers authored by a single author is 2, with 14 different authors contributing exactly 2 papers each.
+
+Density:
+
+-   The network's density is calculated as 217 (the total number of `CITES` links) divided by 38,226 (the total number of possible `PAPER` node pairs), yielding a density of 0.005. This indicates that the network is very sparse, which is typical of citation networks. Not all papers cite every other paper, and citations are generally selective.
 
 ### 3.2 Node pair metrics
 
@@ -366,46 +368,51 @@ Maximums:
 
 -   From the cocitation and bibliographic coupling tables, we can see that the most cocitation and bibliographic coupling pairs are related to each other. On the one hand, the number of cocitation and bibliographic coupling pairs is very low compared to the number of papers. This is because not all papers are cited by all other papers and vice versa which is common in citation networks.
 
-### 3.3 Nodes metrics
+### 3.3 Nodes Metrics
 
-1. The paper that has the highest degree (using neuler):
+1. **The paper with the highest degree (using Neuler):**
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20195153.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20195153.png)
 
-The result show that a paper with title "Moriond QCD 2007 - Theory Summary" has the most informaiton about other papers with 5 citations.
+    The result shows that the paper titled _"Moriond QCD 2007 - Theory Summary"_ has the most connections to other papers, with 5 citations.
 
-2. The paper that has the highest betweenness centrality (using neuler):
+2. **The paper with the highest betweenness centrality (using Neuler):**
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20195813.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20195813.png)
 
-The result show that a paper with title "Moriond QCD 2007 - Theory Summary" has the highest betweenness centrality with the score of 24. This means that this paper is the most important paper in the network since it has the most shortest paths between other papers.
+    The result shows that the paper titled _"Moriond QCD 2007 - Theory Summary"_ has the highest betweenness centrality with a score of 24. This indicates that this paper plays the most crucial role in the network, acting as a bridge on the shortest paths between other papers.
 
-3. The paper that has the highest closeness centrality (using neuler):
+3. **The paper with the highest closeness centrality (using Neuler):**
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20200533.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20200533.png)
 
-The result show that all papers have the same closeness score of 1. This means that each paper cites or is cited by all other papers in the network. This is common in citation networks since all papers are connected to each other through citations.
+    The result shows that all papers have the same closeness centrality score of 1. This suggests that each paper is equally close to all other papers in the network, meaning they either cite or are cited by each other. This is typical in citation networks where papers are interconnected.
 
-4. The paper that has the highest eigenvector centrality (using neuler):
+4. **The paper with the highest eigenvector centrality (using Neuler):**
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20201226.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20201226.png)
 
-The result show that the papers with the following tittles "Marginal Solutions for the Superstring", "Analytic solutions for marginal deformations in open superstring field theory", "Direct extraction of one-loop integral coefficients", "Numerical Evaluation of Six-Photon Amplitudes" have the highest eigenvector centrality with the score of 0.45. This means that these papers are the most influence and prestige papers in the network since they are cited by other important papers.
+    The result shows that the following papers have the highest eigenvector centrality with a score of 0.45:
 
-5. Papers with highest custering coefficient (using neuler):
+    - _"Marginal Solutions for the Superstring"_
+    - _"Analytic Solutions for Marginal Deformations in Open Superstring Field Theory"_
+    - _"Direct Extraction of One-Loop Integral Coefficients"_
+    - _"Numerical Evaluation of Six-Photon Amplitudes"_
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20203136.png)
+    This means that these papers are the most influential and prestigious in the network since they are cited by other important papers.
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20203245.png)
+5. **Papers with the highest clustering coefficient (using Neuler):**
 
-![Graph Screenshot](assets/Screenshot%202024-10-22%20203319.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20203136.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20203245.png)
+    ![Graph Screenshot](assets/Screenshot%202024-10-22%20203319.png)
 
-The result show that there are 30 papers with the highest clustering coefficient of 1. This means that these papers are in the same cluster and they are connected to each other through citations. This is common in citation networks since papers in the same categories are usually cited by each other.
+    The results show that there are 30 papers with the highest clustering coefficient of 1. This indicates that these papers form a highly interconnected cluster where they cite each other, which is common in citation networks, especially among papers in the same category.
 
-## 4. Limitaion
+## 4. Limitation
 
-The limitation of this analysis is that the neu4j graph is not big enough to fully show 4000 papers which mean that the result may not be accurate. In addition, the analysis is only based on the data in the graph database, so it may not be able to show the full picture of the citation network.
+One limitation of this analysis is that the Neo4j graph is not large enough to fully represent all 4,000 papers, which means the results may not be entirely accurate. Additionally, the analysis is based solely on the data present in the graph database, which may not provide a comprehensive view of the citation network.
 
-## 5. Conclustion
+## 5. Conclusion
 
-In conclusion, by using many data analysis techniques and tool, we can analyze the citation network to find the most important papers, the most popular categories, the most cocitation and bibliographic coupling pairs, and the most influence papers. This analysis can help us to understand the structure of the citation network and the relationship between papers in the network. However, the limitation of the analysis is that the graph database is not big enough to fully show the citation network and we may not be able to get the full picture of the network. In the further work, we will remodify the althorithm to collect datas that able to show the full picture of the network.
+In conclusion, by using various data analysis techniques and tools, we can effectively analyze the citation network to identify the most important papers, the most popular categories, the most co-cited and bibliographically coupled pairs, and the most influential papers. This analysis helps us understand the structure of the citation network and the relationships between papers. However, the limitation of the analysis lies in the incomplete dataset in the graph database, preventing a full representation of the network. Future work will focus on improving the algorithm to collect data that provides a more complete view of the network.
