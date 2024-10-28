@@ -411,8 +411,27 @@ Density:
 
 ## 4. Limitation
 
-One limitation of this analysis is that the Neo4j graph is not large enough to fully represent all 4,000 papers, which means the results may not be entirely accurate. Additionally, the analysis is based solely on the data present in the graph database, which may not provide a comprehensive view of the citation network.
+-   This analysis is that the Neo4j graph is not large enough to fully represent all 4,000 papers, which means the results may not be entirely accurate.
+-   The analysis is based solely on the data present in the graph database, which may not provide a comprehensive view of the citation network.
+-   The data is limited to ArXiv papers, which may not represent the entire field of research in the scientific community.
+-   The dataset is released in April 2019, which may not include the most recent papers and citations.
+-   We just generate a subset of the data to analyze the network due to the limitation of the computer's memory and processing power. This may lead to inaccurate results.
 
 ## 5. Conclusion
 
-In conclusion, by using various data analysis techniques and tools, we can effectively analyze the citation network to identify the most important papers, the most popular categories, the most co-cited and bibliographically coupled pairs, and the most influential papers. This analysis helps us understand the structure of the citation network and the relationships between papers. However, the limitation of the analysis lies in the incomplete dataset in the graph database, preventing a full representation of the network. Future work will focus on improving the algorithm to collect data that provides a more complete view of the network.
+Through the application of various data analysis techniques and tools, we effectively analyzed the citation network to identify key papers, popular categories, frequently co-cited and bibliographically coupled pairs, and influential publications. This analysis offers insights into the citation network's structure and the relationships among its papers.
+
+However, the analysis is limited by the incomplete dataset within the graph database, which restricts a comprehensive representation of the network. Future work will prioritize refining the data collection algorithms to capture a more complete and accurate view of the citation network.
+
+## 6. References
+
+-   [arXiv Public Datasets](https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0)
+-   [Neo4j](https://neo4j.com/)
+-   [Neuler](https://neuler.graphapp.io/)
+-   [Python](https://www.python.org/)
+-   [Pandas](https://pandas.pydata.org/)
+
+## 7. Contributors
+
+-   [Minh Tran](https://minhtran-nine.vercel.app)
+-   [Leo Ho](https://www.linkedin.com/in/quocleoho/)
