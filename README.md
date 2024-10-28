@@ -1,4 +1,4 @@
-# Project ArXiv Citation Network
+# Project arXiv Citation Network
 
 ## 0. Usage
 
@@ -27,20 +27,20 @@ This will load the data from the csv files into a Neo4j database.
 
 ## 1. Introduction
 
-This project aims to analyze the citation network of ArXiv papers. We use Python to clean the data and create a Neo4j network to visualize and analyze the citation relationships between ArXiv papers.
+This project aims to analyze the citation network of arXiv papers. We use Python to clean the data and create a Neo4j network to visualize and analyze the citation relationships between arXiv papers.
 
 ## 2. Data Description
 
 The data was extracted from: [https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0](https://github.com/mattbierbaum/arxiv-public-datasets/releases/tag/v0.2.0). More exactly, we'll use the file `internal-references-v0.2.0-2019-03-01.json.gz`, which contains the list of papers and their references, all papers using their arXiv IDs and `oai-arxiv-metadata-hash-abstracts-2019-03-01.json`, which contains the metadata of the papers.
 
-The processed dataset is stored in JSON format. It contains metadata for ArXiv papers, including titles, authors, abstracts, and references. The data is stored in two files:
+The processed dataset is stored in JSON format. It contains metadata for arXiv papers, including titles, authors, abstracts, and references. The data is stored in two files:
 
 -   `data/oai-arxiv-metadata-hash-abstracts-2019-03-01.json`
 -   `data/internal-references-pdftotext.json`
 
 ### Neo4j Network
 
-Using Neo4j, we created a citation network for the ArXiv papers. The nodes represent papers and categories, while the edges represent citation and categorization relationships. By running the Neo4j command:
+Using Neo4j, we created a citation network for the arXiv papers. The nodes represent papers and categories, while the edges represent citation and categorization relationships. By running the Neo4j command:
 
 ```cypher
 MATCH (n) RETURN n
@@ -55,7 +55,7 @@ we visualize the citation network where:
     -   `abstract_md5`: MD5 hash of the abstract
     -   `authors`: List of authors
     -   `doi`: Digital Object Identifier
-    -   `idAxv`: ArXiv identifier
+    -   `idAxv`: arXiv identifier
     -   `report_no`: Report number
     -   `submitter`: Paper submitter
     -   `title`: Paper title
@@ -413,7 +413,7 @@ Density:
 
 -   This analysis is that the Neo4j graph is not large enough to fully represent all 4,000 papers, which means the results may not be entirely accurate.
 -   The analysis is based solely on the data present in the graph database, which may not provide a comprehensive view of the citation network.
--   The data is limited to ArXiv papers, which may not represent the entire field of research in the scientific community.
+-   The data is limited to arXiv papers, which may not represent the entire field of research in the scientific community.
 -   The dataset is released in April 2019, which may not include the most recent papers and citations.
 -   We just generate a subset of the data to analyze the network due to the limitation of the computer's memory and processing power. This may lead to inaccurate results.
 
