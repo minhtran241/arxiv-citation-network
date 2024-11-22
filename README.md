@@ -130,6 +130,93 @@ The network consists of **313 nodes** and **667 relationships**.
 | math.GN            | 1                |
 | cs.DM              | 1                |
 
+#### Category Distribution
+![Graph Screenshot](assets/image.png)
+| mainCategory | numberOfSubcategories |
+| ------------ | --------------------- |
+| astro        | 1                     |
+| cond-mat     | 7                     |
+| cs           | 1                     |
+| gr           | 1                     |
+| hep          | 4                     |
+| math         | 15                    |
+| nlin         | 1                     |
+| nucl         | 2                     |
+| physics      | 2                     |
+| q-fin        | 1                     |
+| quant        | 1                     |
+
+- Papers that belong to more than one main category:
+![Graph Screenshot](assets/Screenshot%202024-11-22%20171043.png)
+![Graph Screenshot](assets/Screenshot%202024-11-22%20171437.png)
+
+| title                                                                 | mainCategories                |
+| --------------------------------------------------------------------- | ----------------------------- |
+| A compact star rotating at 1122 Hz and the r-mode instability         | ["gr", "hep", "nucl", "astro"]|
+| The Mathematical Universe                                             | ["gr", "hep", "astro"]        |
+| String inspired explanation for the super-acceleration of our universe| ["gr", "hep", "astro"]        |
+| An Inverse $f(R)$ Gravitation for Cosmic Speed up, and Dark Energy    | ["gr", "hep", "astro"]        |
+| Z^0 \to 2\gamma and the Twisted Coproduct of the Poincar\'{e} Group   | ["gr", "math", "hep"]         |
+| Bouncing Universe with Quintom Matter                                 | ["gr", "hep", "astro"]        |
+| Extra force in $f(R)$ modified theories of gravity                    | ["gr", "hep", "astro"]        |
+| UV stable, Lorentz-violating dark energy with transient phantom era   | ["gr", "hep", "astro"]        |
+| Absence of the Fifth Force Problem in a Model with Spontaneously Brok | ["gr", "hep", "astro"]        |
+| Dark energy from modified F(R)-scalar-Gauss-Bonnet gravity            | ["gr", "hep", "astro"]        |
+| Hybrid Chaplygin gas and phantom divide crossing                      | ["gr", "hep", "astro"]        |
+| Interacting Energy Components and Observational $H(z)$ Data           | ["gr", "hep", "astro"]        |
+| Phantom field dynamics in loop quantum cosmology                      | ["gr", "hep", "astro"]        |
+| Towards observable signatures of other bubble universes               | ["gr", "hep", "astro"]        |
+| Casimir effect in a 6D warped flux compactification model             | ["gr", "hep", "astro"]        |
+| Dynamics of a quantum phase transition in a ferromagnetic Bose-Einste | ["cond-mat", "hep", "quant"]  |
+| Projective Hilbert space structures at exceptional points             | ["cond-mat", "math", "quant"] |
+| Space of Quantum Theory Representations of Natural Numbers, Integers, | ["math", "hep", "quant"]      |
+| The S-Matrix of AdS/CFT and Yangian Symmetry                          | ["hep", "cond-mat", "nlin"]   |
+| A-infinity structure on simplicial complexes                          | ["hep", "math", "cs"]         |
+| Contraints on radiative dark-matter decay from the cosmic microwave   | ["hep", "astro"]              |
+| Fermionic formulas for (1,p) logarithmic model characters in \Phi_{2, | ["hep", "math"]               |
+| Higher Nilpotent Analogues of A-infinity Structure                    | ["hep", "math"]               |
+| Neumann and Neumann-Rosochatius integrable systems from membranes on  | ["hep", "nlin"]               |
+| Direct photons and dileptons via color dipoles                        | ["hep", "nucl"]               |
+| Constraints on the Very Early Universe from Thermal WIMP Dark Matter  | ["hep", "astro"]              |
+| Resolving Cosmic Gamma Ray Anomalies with Dark Matter Decaying Now    | ["hep", "astro"]              |
+| Strange stars and the cosmological constant problem                   | ["hep", "astro"]              |
+| Ultra-High Energy Cosmic Rays and the GeV-TeV Diffuse Gamma-Ray Flux  | ["hep", "astro"]              |
+| Possible solution to the $^7$Li problem by the long lived stau        | ["hep", "astro"]              |
+| Signatures of axion-like particles in the spectra of TeV gamma-ray so | ["hep", "astro"]              |
+| Diffuse cosmic gamma-rays at 1-20 MeV: A trace of the dark matter?    | ["hep", "astro"]              |
+| The Epps effect revisited                                             | ["physics", "q-fin"]          |
+| Modeling the Epps effect of cross correlations in asset prices        | ["physics", "q-fin"]          |
+| Entanglement entropy at infinite randomness fixed points in higher di | ["cond-mat", "quant"]         |
+| Spin Evolution of Accreting Neutron Stars: Nonlinear Development of t | ["gr", "astro"]               |
+| Charges from Attractors                                               | ["gr", "hep"]                 |
+| Euclidean analysis of the entropy functional formalism                | ["gr", "hep"]                 |
+| A Way to Dynamically Overcome the Cosmological Constant Problem       | ["gr", "astro"]               |
+| Type I singularities and the Phantom Menace                           | ["gr", "hep"]                 |
+| Phenomenological template family for black-hole coalescence waveforms | ["gr", "astro"]               |
+| The critical temperature for the BCS equation at weak coupling        | ["cond-mat", "math"]          |
+| Strong photon non-linearities and photonic Mott insulators            | ["cond-mat", "quant"]         |
+| Effective spin systems in coupled micro-cavities                      | ["cond-mat", "quant"]         |
+| Strong decays of charmed baryons                                      | ["nucl", "hep"]               |
+| Relativistic Hydrodynamics at RHIC and LHC                            | ["nucl", "hep"]               |
+| Improved Measurement of the Positive Muon Lifetime and Determination  | ["nucl", "hep"]               |
+| Phenomenology with Massive Neutrinos                                  | ["hep", "astro"]              |
+| Phenomenology of GUT-less Supersymmetry Breaking                      | ["hep", "astro"]              |
+| Searching for Lee-Wick Gauge Bosons at the LHC                        | ["hep", "astro"]              |
+| The Orbifolds of Permutation-Type as Physical String Systems at  Mult | ["math", "hep"]               |
+| A New Algebraic Structure of Finite Quantum Systems and the Modified  | ["math", "quant"]             |
+| Proof of the Flohr-Grabow-Koehn conjectures for characters of  logari | ["math", "hep"]               |
+| Complex data processing: fast wavelet analysis on the sphere          | ["math", "astro"]             |
+| The Orbifolds of Permutation-Type as Physical String Systems at  Mult | ["math", "hep"]               |
+| Long Distance Signaling Using Axion-like Particles                    | ["hep", "astro"]              |
+| The dynamical Casimir effect in braneworlds                           | ["hep", "astro"]              |
+| Dynamical Casimir effect for gravitons in bouncing braneworlds        | ["hep", "astro"]              |
+| Constraints on Regge models from perturbation theory                  | ["hep", "nucl"]               |
+| Route to Lambda in conformally coupled phantom cosmology              | ["hep", "astro"]              |
+| Scaling cosmologies, geodesic motion and pseudo-susy                  | ["hep", "astro"]              |
+| Braneworld Cosmology                                                  | ["hep", "astro"]              |
+| Cosmological Symmetry Breaking, Pseudo-scale invariance, Dark Energy  | ["hep", "astro"]              |
+
+
 -   The number of being cited for each paper:
 
 ![Graph Screenshot](assets/Screenshot%202024-10-22%20142658.png)
