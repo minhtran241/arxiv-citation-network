@@ -1,5 +1,10 @@
 # Project arXiv Citation Network
 
+## Contributors
+
+-   [Minh Tran](https://minhtran-nine.vercel.app)
+-   [Leo Ho](https://www.linkedin.com/in/quocleoho/)
+
 ## 0. Usage
 
 ### Data Preparation
@@ -518,7 +523,3 @@ However, the analysis is limited by the incomplete dataset within the graph data
 -   [Python](https://www.python.org/)
 -   [Pandas](https://pandas.pydata.org/)
 
-## 7. Contributors
-
--   [Minh Tran](https://minhtran-nine.vercel.app)
--   [Leo Ho](https://www.linkedin.com/in/quocleoho/)
